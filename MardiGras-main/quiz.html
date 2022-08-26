@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" type="image/png" href="Images/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+
+    <title>Quiz</title>
+    <!--Color Palette: purple #9453A6 green #8CBF3F yellow #F2cc0F white #F2F2F2 black #0D0D0D -->
+</head>
+
+<body>
+    <!--Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+
+        </script>
+    <header class="head">
+        <!--HEADER-->
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img class="mainlogo" src="Images/logo.svg" alt="Mardi Gras New Orleans">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="bi bi-list" style="font-size: 2.5rem; color: #f7faff;"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav nav-fill w-100">
+                            <li class="nav-item">
+                                <a class="active-page" aria-current="page" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="media.html">Media</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="faq.html">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="contact.html">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="quiz.html">Quiz</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--END HEADER-->
+
+    <body  onload="NextQuestion(0)">
+      <h1 class="quiz_tittle">Quiz</h1>
+  
+      <main>
+        <div class="quiz_container">
+          <!-- creating a modal for when quiz ends -->
+          <div class="modal-container" id="score-modal">
+  
+              <div class="modal-content-container">
+  
+                  <h1>Congratulations, Quiz Completed.</h1>
+  
+                  <div class="grade-details">
+                      <p>Attempts : 10</p>
+                      <p>Wrong Answers : <span id="wrong-answers"></span></p>
+                      <p>Right Answers : <span id="right-answers"></span></p>
+                      <p>Grade : <span id="grade-percentage"></span>%</p>
+                      <p ><span id="remarks"></span></p>
+                  </div>
+  
+                  <div class="modal-button-container">
+                      <button onclick="closeScoreModal()">Continue</button>
+                  </div>
+  
+              </div>
+          </div>
+  <!-- end of modal of quiz details-->
+  
+          <div class="game-quiz-container">
+  
+              <div class="game-details-container">
+                  <h1>Score : <span id="player-score"></span> / 10</h1>
+                  <h1> Question : <span id="question-number"></span> / 10</h1>
+              </div>
+  
+              <div class="game-question-container">
+                  <h1 id="display-question"></h1>
+              </div>
+  
+              <div class="game-options-container">
+  
+                 <div class="modal-container" id="option-modal">
+  
+                      <div class="modal-content-container">
+                           <h1>Please Pick An Option</h1>
+  
+                           <div class="modal-button-container">
+                              <button onclick="closeOptionModal()">Continue</button>
+                          </div>
+  
+                      </div>
+  
+                 </div>
+  
+                  <span>
+                      <input type="radio" id="option-one" name="option" class="radio" value="optionA" />
+                      <label for="option-one" class="option" id="option-one-label"></label>
+                  </span>
+  
+  
+                  <span>
+                      <input type="radio" id="option-two" name="option" class="radio" value="optionB" />
+                      <label for="option-two" class="option" id="option-two-label"></label>
+                  </span>
+  
+  
+                  <span>
+                      <input type="radio" id="option-three" name="option" class="radio" value="optionC" />
+                      <label for="option-three" class="option" id="option-three-label"></label>
+                  </span>
+  
+  
+                  <span>
+                      <input type="radio" id="option-four" name="option" class="radio" value="optionD" />
+                      <label for="option-four" class="option" id="option-four-label"></label>
+                  </span>
+  
+  
+              </div>
+  
+              <div class="next-button-container">
+                  <button onclick="handleNextQuestion()">Next Question</button>
+              </div>
+          </div>
+        </div>
+           <!--FOOTER-->
+    <div class="container-fluid footer_">
+      <footer>
+          <div class="container">
+              <section class="footer">
+                  <div class="slavik text-white">Slavik Yasinsky - All Rights Reserved 2022©</div>
+                  <!-- Facebook -->
+                  <a class="btn btn-floating" href="https://www.facebook.com/MardiGrasNewOrleans" target="_blank"
+                      role="button"><i class="bi bi-facebook" style="font-size: 1.5rem; color: #fff;"></i>
+                  </a>
+                  <!-- Twitter -->
+                  <a class="btn btn-floating " href="https://twitter.com/MardiGrasNOLA" target="_blank"
+                      role="button"><i class="icon bi bi-twitter" style="font-size: 1.5rem; color: #fff;"></i>
+                  </a>
+                  <!-- Instagram -->
+                  <a class="btn btn-floating" href="https://www.instagram.com/mardigrasneworleans/" target="_blank"
+                      role="button"><i class="bi bi-instagram" style="font-size: 1.5rem; color: #fff;"></i>
+                  </a>
+                  <!-- YouTube -->
+                  <a class="btn btn-floating" href="https://www.youtube.com/channel/UCOrq1qF6dVDn9Do-wvbKh0Q"
+                      target="_blank" role="button"><i class="bi bi-youtube"
+                          style="font-size: 1.5rem; color: #fff;"></i>
+                  </a>
+              </section>
+          </div>
+      </footer>
+  </div>
+  <!--END FOOTER-->
+  </div>
+  </div>
+      </main>
+      <script src="js/quiz.js"></script>
+  </body>
+  
+  </html>
+  
